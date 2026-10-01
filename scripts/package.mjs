@@ -1,0 +1,10 @@
+import { mkdir,writeFile,copyFile,readFile } from 'node:fs/promises';
+const {version}=JSON.parse(await readFile('package.json','utf8'));
+const icons=Object.fromEntries([16,24,32,48,128].map(size=>[size,`images/chizambi-${size}.png`]));
+await mkdir('dist/images',{recursive:true});
+for(const file of Object.values(icons))await copyFile(`src/${file}`,`dist/${file}`);
+await writeFile('dist/manifest.json',JSON.stringify({manifest_version:3,name:'chizAmbi',version,icons,description:'치지직 영상의 색이 주변으로 퍼지는 앰비언트 조명',minimum_chrome_version:'121',action:{default_icon:icons,default_title:'chizAmbi 설정',default_popup:'popup.html'},permissions:['storage'],content_scripts:[{matches:['https://chzzk.naver.com/*'],js:['scripts/content.js'],css:['styles/content.css'],run_at:'document_idle'}]},null,2));
+await copyFile('src/popup.html','dist/popup.html');
+await copyFile('src/styles/popup.css','dist/styles/popup.css');
+await copyFile('LICENSE','dist/LICENSE');
+await copyFile('THIRD_PARTY_NOTICES.md','dist/THIRD_PARTY_NOTICES.md');

@@ -1,0 +1,81 @@
+// Projector positioning adapted from upstream content.scss (MIT).
+.chizambi-toolbar-button {
+  position:relative;flex-shrink:0;
+  img {width:24px;height:24px;object-fit:contain;filter:brightness(0) invert(1);pointer-events:none;opacity:1;}
+  &::after {
+    content:'';position:absolute;left:calc(50% + 5px);top:calc(50% + 5px);
+    width:6px;height:6px;border-radius:50%;background:#8b9095;
+    box-shadow:0 0 0 1.5px #202423;pointer-events:none;
+  }
+  &[aria-pressed=true]::after {background:#00e89b;}
+  &:focus-visible {outline:2px solid #00d99b;outline-offset:-2px;}
+  &:hover .pzp-button__tooltip,&:focus-visible .pzp-button__tooltip {visibility:visible;opacity:1;}
+}
+#chizambi-light {
+  position:fixed;inset:0;pointer-events:none!important;z-index:0;
+  overflow:hidden;opacity:.72;contain:strict;
+  &[hidden]{display:none!important}
+  .chizambi-projectors{position:absolute;pointer-events:none}
+  .ambientlight__projector,.ambientlight__shadow{position:absolute;inset:0;width:100%;height:100%;transform-origin:center;pointer-events:none}
+  .ambientlight__projector{contain:strict;background:none}
+}
+#chizambi-ui[hidden]{display:none!important}
+html[data-chizambi-page] {
+  body {background:#050607!important;}
+  #root {z-index:1!important;}
+  [data-chizambi-surface] {background-color:transparent!important;}
+  #header, #sidebar > div, #aside-chatting {
+    // Let more of the light through where site panels overlap it.
+    background-color:transparent!important;
+    color:#f1f4f5;
+  }
+  // Keep slightly more shading behind fast-moving chat text.
+  #header {background-image:linear-gradient(to bottom,rgba(8,10,12,.24),rgba(8,10,12,.24) 30%,transparent)!important;}
+  #sidebar > div {background-image:linear-gradient(to right,rgba(8,10,12,.24),rgba(8,10,12,.24) 35%,transparent)!important;}
+  #aside-chatting {background-image:linear-gradient(to right,transparent,rgba(8,10,12,.32) 48px)!important;}
+  main h1, main h2, main h3 {color:#f5f6f7!important;}
+  // CHZZK paints an opaque background on the chat heading itself.
+  #aside-chatting > div > h2 {
+    background-color:transparent!important;
+    color:#f5f6f7!important;
+    border-bottom-color:rgba(255,255,255,.08)!important;
+  }
+  // Rankings share one opaque outer panel in collapsed and expanded views.
+  // Match component roles rather than generated CSS-module hashes. Keep medal
+  // sprites and action-button backgrounds intact.
+  #aside-chatting > div:has([class*="_icon_ranking_"]),
+  #aside-chatting > div:has(> [class*="_ranking_button_"]) {
+    background-color:transparent!important;
+    border-color:rgba(255,255,255,.08)!important;
+  }
+  #header, #sidebar, #aside-chatting, main h1, main h2, main h3, main p {
+    text-shadow:0 1px 3px rgba(0,0,0,.9);
+  }
+  #header div:has(> #search-input) {
+    background-color:rgba(8,10,12,.24)!important;
+    border-color:rgba(255,255,255,.2)!important;
+    border-radius:999px;
+  }
+  #header #search-input, #header #search-input ~ button {
+    background-color:transparent!important;
+    color:#f5f6f7!important;
+    caret-color:#f5f6f7;
+  }
+  #header #search-input::placeholder {color:#b9c0c8!important;opacity:1;}
+  #header div:has(> #search-input):focus-within {border-color:rgba(255,255,255,.55)!important;}
+  #aside-chatting textarea, #aside-chatting [contenteditable=true] {
+    background-color:transparent!important;color:#f5f6f7!important;
+    caret-color:#f5f6f7;
+  }
+  #aside-chatting > div:has(> div > textarea),
+  #aside-chatting > div:has(> div > [contenteditable=true]) {
+    background-color:transparent!important;
+    border-top-color:rgba(255,255,255,.08)!important;
+  }
+  #aside-chatting div:has(> textarea),
+  #aside-chatting div:has(> [contenteditable=true]) {
+    background-color:rgba(8,10,12,.3)!important;
+    box-shadow:inset 0 0 0 1px rgba(255,255,255,.12);
+  }
+  #aside-chatting textarea::placeholder {color:#bcc3cc!important;opacity:1;}
+}

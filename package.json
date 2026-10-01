@@ -1,0 +1,29 @@
+{
+  "name": "chizambi",
+  "version": "0.1.17",
+  "description": "CHZZK ambient lighting prototype",
+  "license": "MIT",
+  "type": "module",
+  "scripts": {
+    "test": "node --test tests/*.test.js",
+    "build": "rollup -c && sass --no-source-map src/styles/chizambi.scss dist/styles/content.css && node scripts/package.mjs",
+    "demo": "node scripts/demo-server.mjs"
+  },
+  "engines": {
+    "node": ">=22"
+  },
+  "devDependencies": {
+    "@babel/core": "^7.21.8",
+    "@babel/plugin-proposal-class-properties": "^7.18.6",
+    "@babel/plugin-proposal-optional-chaining": "^7.21.0",
+    "@rollup/plugin-babel": "^6.0.4",
+    "@rollup/plugin-node-resolve": "^16.0.1",
+    "copyfiles": "^2.4.1",
+    "eslint": "^9.28.0",
+    "globals": "^16.2.0",
+    "npm-run-all": "^4.1.5",
+    "rollup": "^4.42.0",
+    "sass": "^1.62.1"
+  },
+  "private": true
+}

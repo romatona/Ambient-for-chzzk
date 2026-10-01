@@ -1,0 +1,13 @@
+<!doctype html>
+<html lang="ko" data-theme="dark">
+<head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>chizAmbi 설정</title><link rel="stylesheet" href="styles/popup.css"></head>
+<body>
+<header><div><h1>chizAmbi</h1><span>치지직 앰비언트 조명</span></div><label class="switch" title="앰비언트 조명"><input id="enabled" type="checkbox" aria-label="앰비언트 조명"><i></i></label></header>
+<main>
+<fieldset><legend>프리셋</legend><div class="preset-buttons"><button id="preset-1">프리셋 1<small>100 · 30 · 17</small></button><button id="preset-2">프리셋 2<small>110 · 10 · 100</small></button></div><div class="preset-buttons"><button id="preset-user" disabled>유저 프리셋 1<small id="preset-user-values">저장된 값 없음</small></button><button id="preset-save">현재 값 저장</button></div><small>밝기 · 흐림 · 퍼짐</small></fieldset>
+<fieldset><legend>조명 방향</legend><div id="directions"></div></fieldset>
+<fieldset><legend>앰비언트 조명</legend><div id="sliders"></div></fieldset>
+<fieldset><legend>일반</legend><label class="row" for="theme">설정창 테마<select id="theme"><option value="light">밝게</option><option value="system">시스템</option><option value="dark">어둡게</option></select></label><label class="row" for="webGL">WebGL 사용<input id="webGL" type="checkbox"></label></fieldset>
+</main><footer><span id="status" role="status">설정을 불러오는 중…</span><small id="reset-hint">조절바를 더블클릭하면 기본값으로 돌아갑니다.</small><small>G: 조명 켜기/끄기 · 채팅/검색 입력 중에는 제외</small><small>치지직 라이브에 바로 적용됩니다.</small></footer>
+<script src="scripts/popup.js"></script>
+</body></html>

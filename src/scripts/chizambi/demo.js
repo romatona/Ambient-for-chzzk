@@ -1,0 +1,11 @@
+import { useStorage } from './storage';
+import { start } from './controller';
+useStorage({async get(key){const all=JSON.parse(localStorage.getItem('demo-settings')||'{}');return key?{[key]:all[key]}:all;},async set(values){localStorage.setItem('demo-settings',JSON.stringify({...JSON.parse(localStorage.getItem('demo-settings')||'{}'),...values}));}});
+const canvas=document.createElement('canvas');canvas.width=960;canvas.height=540;
+const ctx=canvas.getContext('2d');let phase=0;
+function paint(){phase+=.01;const g=ctx.createLinearGradient(0,0,960,540);g.addColorStop(0,`hsl(${phase*40%360} 90% 60%)`);g.addColorStop(.55,'#101528');g.addColorStop(1,`hsl(${(phase*40+150)%360} 90% 55%)`);ctx.fillStyle=g;ctx.fillRect(0,0,960,540);ctx.fillStyle='white';ctx.font='48px sans-serif';ctx.fillText('chizAmbi · renderer test',180,280);requestAnimationFrame(paint);}paint();
+document.querySelector('video').srcObject=canvas.captureStream(30);
+document.querySelector('video').play();
+document.querySelector('#route').onclick=()=>history.pushState({},'',location.pathname==='/live/demo'?'/':'/live/demo');
+document.querySelector('#size').onclick=()=>document.querySelector('main').classList.toggle('small');
+start();
